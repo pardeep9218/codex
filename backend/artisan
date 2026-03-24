@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require_once __DIR__ . '/app/Support/JsonStore.php';
+require_once __DIR__ . '/database/seeders/InitialSeeder.php';
+
+use App\Support\JsonStore;
+use Database\Seeders\InitialSeeder;
+
+$command = $argv[1] ?? null;
+$store = new JsonStore(__DIR__ . '/storage');
+
+if ($command === 'db:seed') {
+    (new InitialSeeder())->run($store);
+    echo "Seeded initial data successfully.\n";
+    exit(0);
+}
+
+if ($command === 'db:reset') {
+    $store->write('fabrics.json', []);
+    $store->write('saved_configurations.json', []);
+    $store->write('orders.json', []);
+    echo "Reset storage files successfully.\n";
+    exit(0);
+}
+
+echo "Available commands:\n";
+echo "  php backend/artisan db:seed\n";
+echo "  php backend/artisan db:reset\n";
+exit(1);

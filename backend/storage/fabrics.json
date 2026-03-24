@@ -1,0 +1,30 @@
+[
+    {
+        "id": "fab_navy",
+        "name": "Navy Italian Wool",
+        "price_adjustment": 12000,
+        "hex": "#1f2f4a",
+        "active": true
+    },
+    {
+        "id": "fab_charcoal",
+        "name": "Charcoal Merino",
+        "price_adjustment": 9000,
+        "hex": "#3a3f46",
+        "active": true
+    },
+    {
+        "id": "fab_light_gray",
+        "name": "Light Gray Summer",
+        "price_adjustment": 7000,
+        "hex": "#8b919d",
+        "active": true
+    },
+    {
+        "id": "fab_black",
+        "name": "Midnight Black",
+        "price_adjustment": 10000,
+        "hex": "#1a1a1a",
+        "active": true
+    }
+]

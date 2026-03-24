@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Custom Suit Platform API
+  version: 1.1.0
+servers:
+  - url: http://127.0.0.1:8000
+paths:
+  /api/v1/health:
+    get:
+      summary: Health check
+      responses:
+        '200': { description: OK }
+  /api/v1/fabrics:
+    get:
+      summary: List active fabrics
+      responses:
+        '200': { description: Fabric list }
+  /api/v1/configurations/price-preview:
+    post:
+      summary: Calculate price preview
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200': { description: Price preview }
+  /api/v1/me/saved-configurations:
+    get:
+      summary: List saved configurations
+      parameters:
+        - in: query
+          name: email
+          schema: { type: string }
+      responses:
+        '200': { description: Saved configurations }
+    post:
+      summary: Save configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201': { description: Saved }
+  /api/v1/orders:
+    post:
+      summary: Create order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201': { description: Created }
+  /api/v1/orders/{orderNumber}:
+    get:
+      summary: Get order by number
+      parameters:
+        - in: path
+          name: orderNumber
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Order details }
+  /api/v1/admin/fabrics:
+    get:
+      summary: List all fabrics (admin)
+      parameters:
+        - in: header
+          name: X-Admin-Key
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: All fabrics }
+    post:
+      summary: Create fabric (admin)
+      parameters:
+        - in: header
+          name: X-Admin-Key
+          required: true
+          schema: { type: string }
+      responses:
+        '201': { description: Created }
+  /api/v1/admin/fabrics/{id}:
+    delete:
+      summary: Delete fabric (admin)
+      parameters:
+        - in: header
+          name: X-Admin-Key
+          required: true
+          schema: { type: string }
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deleted }
+  /api/v1/admin/orders:
+    get:
+      summary: List orders (admin)
+      parameters:
+        - in: header
+          name: X-Admin-Key
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Order list }
